@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
 
-# Required permissions for the Pages deployment action
+# Permissions required by the Pages deployment action
 permissions:
   contents: read
   pages: write
@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '18'
 
@@ -30,12 +30,16 @@ jobs:
         run: npm run build
 
       - name: SPA fallback (copy index to 404)
-        run: if [ -f dist/index.html ]; then cp dist/index.html dist/404.html; fi
+        run: |
+          set -e
+          if [ -f dist/index.html ]; then
+            cp dist/index.html dist/404.html
+          fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: dist
+          path: ./dist
 
   deploy:
     needs: build
