@@ -30,8 +30,7 @@ jobs:
         run: npm run build
 
       - name: SPA fallback (copy index to 404)
-        run: |
-          if [ -f dist/index.html ]; then cp dist/index.html dist/404.html; fi
+        run: if [ -f dist/index.html ]; then cp dist/index.html dist/404.html; fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
