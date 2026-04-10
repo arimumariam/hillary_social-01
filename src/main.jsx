@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
+
 // Render the mariam.jsx component from the src directory
 import Mariam from './mariam.jsx'
 
