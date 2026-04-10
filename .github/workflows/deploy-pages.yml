@@ -20,7 +20,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          # Vite requires Node >=20.19 or >=22.12 — use Node 22 to be safe
+          node-version: '22'
 
       - name: Install dependencies
         run: npm ci
